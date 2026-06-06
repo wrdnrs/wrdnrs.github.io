@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wardina Ruslan Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            padding-top: 80px;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .hero-img-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-color), #818cf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(56, 189, 248, 0.2);
+        }
+
+        .hero-img-container img {
+            width: 93%;
+            height: 93%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--bg-color);
+        }
+
+        /* Section Global Styling */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* Grid Configuration */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-color);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(234, 179, 8, 0.2);
+            color: #facc15;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tools span {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        /* Connect / Contact Section */
+        .contact-container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-main);
+            font-size: 2rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column-reverse;
+                justify-content: center;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            nav ul {
+                display: none; /* Simplifies mobile viewing without massive JavaScript blocks */
+            }
+            .hero-img-container {
+                width: 260px;
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">WR.</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="about">
+        <div class="hero-text">
+            <h1>Hi There, I'm <br><span>Wardina Ruslan</span></h1>
+            <p>Diploma in Information Technology student with experience in networking, programming, and system development projects. I enjoy bridging code with creative system architectures.</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+        <div class="hero-img-container">
+            <img src="https://via.placeholder.com/350" alt="Wardina Ruslan">
+        </div>
+    </header>
+
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="project-grid">
+
+            <a href="#" class="project-card">
+                <span class="status-badge">In Progress</span>
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                    <h3>TMBS (Tag Me Back Station)</h3>
+                    <p>A smart, automated attendance tracking system powered by highly responsive AprilTag fiducial markers.</p>
+                </div>
+                <div class="tools">
+                    <span>AprilTag</span>
+                    <span>System Integration</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <h3>Booko Website</h3>
+                    <p>A sleek, functional e-commerce bookstore interface structured cleanly for rapid performance and fluid item browsing.</p>
+                </div>
+                <div class="tools">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>Student Record System</h3>
+                    <p>A foundational object-oriented C++ record management terminal application converted into a fully operational web asset.</p>
+                </div>
+                <div class="tools">
+                    <span>C++ Core</span>
+                    <span>HTML</span>
+                    <span>JavaScript</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>CGPA Calculator</h3>
+                    <p>A robust application built dynamically using raw operating system configurations and low-level scheduling contexts.</p>
+                </div>
+                <div class="tools">
+                    <span>Operating Systems</span>
+                    <span>Scripting</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <h3>EmojiReactionGame</h3>
+                    <p>A quick-reflex timing mini-game deployed directly to interactive physical microcontrollers utilizing visual emoji arrays.</p>
+                </div>
+                <div class="tools">
+                    <span>Micro:bit</span>
+                    <span>MakeCode / Python</span>
+                </div>
+            </a>
+
+            <a href="#" class="project-card">
+                <div>
+                    <div class="project-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Creative Designs Network</h3>
+                    <p>An enterprise-level network layout mapping structured topologies, secure masking, and end-to-end device mapping protocols.</p>
+                </div>
+                <div class="tools">
+                    <span>Cisco Packet Tracer</span>
+                    <span>Networking</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p>I'm always looking to collaborate on new tech initiatives or discuss system networking opportunities!</p>
+            <div class="social-links">
+                <a href="#" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:your-email@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="#" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Wardina Ruslan. Built with GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
